@@ -1,0 +1,132 @@
+//form 1
+
+<?php
+session_start();
+?>
+
+<html>
+    <head>
+        <title>FORMULARZ</title>
+    </head>
+    <body>
+        <form action="form2.php" method="POST">
+            <label>Imię: </label>
+            <input type="text" name="name" required><br>
+            <label>Nazwisko: </label>
+            <input type="text" name="surname" required><br>
+            <button type="submit">SEND</button>
+        </form>
+    </body>
+</html>
+
+
+
+//form 2
+
+<?php
+session_start();
+
+$_SESSION["name"] = $_POST["name"];
+$_SESSION["surname"] = $_POST["surname"];
+?>
+
+<html>
+    <head>
+        <title>FORMULARZ</title>
+    </head>
+    <body>
+        <form action="form3.php" method="POST">
+            <label>Miasto: </label>
+            <input type="text" name="city" required><br>
+            <label>Adres: </label>
+            <input type="text" name="adres" required><br>
+            <button type="submit">SEND</button>
+        </form>
+    </body>
+</html>
+
+
+
+//form 3
+
+<?php
+session_start();
+
+$_SESSION["city"] = $_POST["city"];
+$_SESSION["adres"] = $_POST["adres"];
+?>
+
+<html>
+    <head>
+        <title>FORMULARZ</title>
+    </head>
+    <body>
+        <form action="sommary.php" method="POST">
+            <label>Wiek: </label>
+            <input type="number" name="age" required><br>
+            <label>Płeć: </label>
+            <input type="text" name="sex" required><br>
+            <button type="submit">SEND</button>
+        </form>
+    </body>
+</html>
+
+
+
+//sommary
+
+<?php
+session_start();
+
+$age = $_POST["age"];
+$sex = $_POST["sex"];
+
+if(isset($_POST["reset"])){
+    session_unset();
+    session_destroy();
+    header("Location: form1.php");
+}
+
+if(isset($_POST["name"])){
+    $_SESSION["name"] = $_POST["name"];  
+}
+
+if(isset($_POST["surname"])){
+    $_SESSION["surname"] = $_POST["surname"];  
+}
+
+if(isset($_POST["city"])){
+    $_SESSION["city"] = $_POST["city"];  
+}
+
+if(isset($_POST["adres"])){
+    $_SESSION["adres"] = $_POST["adres"];  
+}
+
+if(isset($_POST["age"])){
+    $_SESSION["age"] = $_POST["age"];  
+}
+
+if(isset($_POST["sex"])){
+    $_SESSION["sex"] = $_POST["sex"];  
+}
+
+?>
+
+<html>
+    <head>
+        <title>FORMULARZ</title>
+    </head>
+    <body>
+        <form method="POST">
+            <h1>Twoje dane: </h1><br>
+            <label>Imię: <?php echo $_SESSION["name"];?></label><br>
+            <label>Nazwisko: <?php echo $_SESSION["surname"]; ?></label><br>
+            <label>Miasto: <?php echo $_SESSION["city"]; ?></label><br>
+            <label>Adres: <?php echo $_SESSION["adres"]; ?></label><br>
+            <label>Wiek: <?php echo $_SESSION["age"]; ?></label><br>
+            <label>Płeć: <?php echo $_SESSION["sex"]; ?></label><br>
+            <button type="submit" name="reset">RESET</button>
+        </form>
+    </body>
+</html>
