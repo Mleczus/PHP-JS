@@ -1,0 +1,111 @@
+//db_connection.php
+
+<?php
+
+$conn = mysqli_connect("localhost", "root", "", "jakup_mleczko_zad");
+
+if(!$conn){
+    die("Błąd połączenia!" . mysqli_connect_error());
+}else{
+    echo "Sukces!";
+}
+
+?>
+
+
+----------------------------------------
+
+
+//create.php 
+----------------
+//ZAD 1 :
+
+<?php
+
+include("db_connection.php");
+
+// $sql = "SELECT * FROM Osoba;";
+
+// $sql = "SELECT DISTINCT Nazwisko FROM Osoba;";
+
+// $sql = "SELECT Nazwisko FROM Osoba
+// ORDER BY Nazwisko ASC;";
+
+// $sql = "SELECT * FROM Osoba
+// WHERE LENGTH(CAST(Telefon AS CHAR)) = 6;";
+
+// $sql = "SELECT * FROM Osoba
+// WHERE Imie LIKE 'Ma%';";
+
+// $sql = "ALTER TABLE Osoba
+// ADD Miejscowosc VARCHAR(20);";
+
+// $sql = "UPDATE Osoba
+// SET Miejscowosc = 'Łódź';"; 
+
+// $sql = "UPDATE Osoba
+// SET Miejscowosc = 'Warszawa'
+// WHERE Imie = 'Mariusz';";
+
+// $sql = "UPDATE Osoba
+// SET Miejscowosc = 'Gdańsk'
+// WHERE Imie = 'Szymon';";
+
+if(mysqli_query($conn, $sql)){
+    echo "Dodano zmiany!";
+}else{
+    echo "Błąd" .mysqli_error($conn);
+};
+
+?>
+
+----------------
+//ZAD 2 :
+
+<?php
+
+include("db_connection.php");
+
+// $sql = "SELECT * FROM Towar WHERE Cena BETWEEN 10 AND 50;";
+
+// $sql = "SELECT SUM(Ilosc * Cena) AS Wartosc FROM Towar WHERE Data_Prod > '2004-01-01';";
+
+// $sql = "SELECT COUNT(*) AS Liczba, AVG(Waga) AS Srednia_Waga, SUM(Ilosc) AS Suma_Ilosc, MIN(Cena) AS Min_Cena, MAX(Cena) AS Max_Cena FROM Towar;";
+
+// $sql = "SELECT Nazwa, COUNT(*) AS Liczba FROM Towar GROUP BY Nazwa HAVING COUNT(*) > 2;";
+
+// $sql = "SELECT * FROM Towar WHERE Waga > 50;";
+
+// $sql = "SELECT * FROM Towar WHERE Cena BETWEEN 10 AND 99;";
+
+// $sql = "SELECT * FROM Towar WHERE (Cena * 0.22) > 50;";
+
+// $sql = "SELECT * FROM Towar WHERE (Cena < 50 OR Cena > 100) AND Ilosc > 5;";
+
+// $sql = "SELECT *, (Cena / Waga) AS Cena_za_kg FROM Towar WHERE (Cena / Waga) BETWEEN 10 AND 50;";
+
+// $sql = "SELECT *, (Ilosc * Waga) AS Masa_Calkowita FROM Towar WHERE (Ilosc * Waga) > Cena AND (Ilosc * Waga) < (Cena * 3);";
+
+// $sql = "SELECT * FROM Towar WHERE Nazwa NOT LIKE '%A%' AND Nazwa NOT LIKE '%a%';";
+
+// $sql = "SELECT * FROM Towar WHERE Data_Prod < DATE_SUB(CURDATE(), INTERVAL 5 YEAR);";
+
+// $sql = "SELECT * FROM Towar WHERE Data_Prod BETWEEN '2000-01-01' AND '2004-12-31' AND Cena BETWEEN 10 AND 99 AND Waga < 5;";
+
+// $sql = "SELECT COUNT(DISTINCT Nazwa) AS Unikalne_Nazwy FROM Towar;";
+
+// $sql = "SELECT Nazwa, SUM(Ilosc * Cena) AS Suma_Wartosci, AVG(Ilosc * Cena) AS Srednia_Wartosci, SUM(Ilosc * Waga) AS Suma_Masy, AVG(Ilosc * Waga) AS Srednia_Masy FROM Towar GROUP BY Nazwa;";
+
+// $sql = "ALTER TABLE Towar ADD VAT INT;";
+
+// $sql = "UPDATE Towar SET VAT = CASE WHEN Ilosc < 50 THEN 22 ELSE 7 END;";
+
+// $sql = "UPDATE Towar SET Cena = Cena * 1.5 WHERE Cena < 50;";
+
+if(mysqli_query($conn, $sql)){
+    echo "Dodano zmiany!";
+}else{
+    echo "Błąd" .mysqli_error($conn);
+};
+
+?>
