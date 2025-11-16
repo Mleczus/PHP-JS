@@ -1,0 +1,56 @@
+sql
+
+
+//ZAD 1:
+
+SELECT * FROM osoba;
+
+SELECT DISTINCT Nazwisko FROM osoba;
+
+SELECT Nazwisko FROM osoba ORDER BY Nazwisko ASC;
+
+SELECT Imie FROM osoba WHERE Imie LIKE "Ma%"
+
+UPDATE osoba SET Miejscowosc = "Łódź";
+
+UPDATE osoba SET Miejscowosc = "Białystok" WHERE Imie LIKE "Ma%";
+
+
+
+//ZAD 2:
+
+SELECT * FROM Towar WHERE Cena BETWEEN 10 AND 50;
+
+SELECT SUM(Ilosc * Cena) AS Wartosc FROM Towar WHERE Data_Prod > '2004-01-01';
+
+SELECT COUNT(*) AS Liczba, AVG(Waga) AS Srednia_Waga, SUM(Ilosc) AS Suma_Ilosc, MIN(Cena) AS Min_Cena, MAX(Cena) AS Max_Cena FROM Towar;
+
+SELECT Nazwa, COUNT(*) AS Liczba FROM Towar GROUP BY Nazwa HAVING COUNT(*) > 2;
+
+SELECT * FROM Towar WHERE Waga > 50;
+
+SELECT * FROM Towar WHERE Cena BETWEEN 10 AND 99;
+
+SELECT * FROM Towar WHERE (Cena * 0.22) > 50;
+
+SELECT * FROM Towar WHERE (Cena < 50 OR Cena > 100) AND Ilosc > 5;
+
+SELECT *, (Cena / Waga) AS Cena_za_kg FROM Towar WHERE (Cena / Waga) BETWEEN 10 AND 50;
+
+SELECT *, (Ilosc * Waga) AS Masa_Calkowita FROM Towar WHERE (Ilosc * Waga) > Cena AND (Ilosc * Waga) < (Cena * 3);
+
+SELECT * FROM Towar WHERE Nazwa NOT LIKE '%A%' AND Nazwa NOT LIKE '%a%';
+
+SELECT * FROM Towar WHERE Data_Prod < DATE_SUB(CURDATE(), INTERVAL 5 YEAR);
+
+SELECT * FROM Towar WHERE Data_Prod BETWEEN '2000-01-01' AND '2004-12-31' AND Cena BETWEEN 10 AND 99 AND Waga < 5;
+
+SELECT COUNT(DISTINCT Nazwa) AS Unikalne_Nazwy FROM Towar;
+
+SELECT Nazwa, SUM(Ilosc * Cena) AS Suma_Wartosci, AVG(Ilosc * Cena) AS Srednia_Wartosci, SUM(Ilosc * Waga) AS Suma_Masy, AVG(Ilosc * Waga) AS Srednia_Masy FROM Towar GROUP BY Nazwa;
+
+ALTER TABLE Towar ADD VAT INT;
+
+UPDATE Towar SET VAT = CASE WHEN Ilosc < 50 THEN 22 ELSE 7 END;
+
+UPDATE Towar SET Cena = Cena * 1.5 WHERE Cena < 50;
